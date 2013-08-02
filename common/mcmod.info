@@ -1,0 +1,20 @@
+[
+{
+    "modid": "DSM",
+    "name": "Deep Sea Mod",
+    "description": "Under Pressure!",
+    "version": "0.0.1",
+    "url": "taeo.dyndns.org",
+    "updateUrl": "",
+    "authorList": [
+       "Taeo"
+       ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots":[
+    ],
+    "parent":"",
+    "dependencies": [
+    ]
+}
+]
