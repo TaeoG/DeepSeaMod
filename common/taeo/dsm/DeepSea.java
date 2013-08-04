@@ -1,6 +1,7 @@
 package taeo.dsm;
 
 import taeo.dsm.block.BlockBuoy;
+import taeo.dsm.block.BlockSeawater;
 import taeo.dsm.item.ItemBathysphere;
 import taeo.dsm.lib.Reference;
 import net.minecraft.block.Block;
@@ -29,6 +30,7 @@ public class DeepSea {
     
     public final static Item itemBathysphere = new ItemBathysphere(5000);
     public final static Block blockBuoy = new BlockBuoy(500, Material.ground);
+    public final static Block blockSeawater= new BlockSeawater(501, Material.water);
     public static CreativeTabs dsmTab = new CreativeTabs("dsmTab"){
         public ItemStack getIconItemStack(){
             return new ItemStack(itemBathysphere, 1, 0);
@@ -54,13 +56,16 @@ public class DeepSea {
         
         //Register Blocks
         GameRegistry.registerBlock(blockBuoy, "blockBuoy");
-        
+        GameRegistry.registerBlock(blockSeawater, "blockSeawater");
         //Set Creative Tab
         itemBathysphere.setCreativeTab(dsmTab);
         blockBuoy.setCreativeTab(dsmTab);
+        blockSeawater.setCreativeTab(dsmTab);
+        
     }
     private void registerNames(){
         LanguageRegistry.addName(itemBathysphere, "Bathysphere");
         LanguageRegistry.addName(blockBuoy, "Buoy");
+        LanguageRegistry.addName(blockSeawater, "Seawater");
     }
 }
