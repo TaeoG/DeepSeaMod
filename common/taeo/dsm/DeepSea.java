@@ -1,6 +1,6 @@
 package taeo.dsm;
 
-import taeo.dsm.block.BlockBuoy;
+import taeo.dsm.block.BlockDeepSea;
 import taeo.dsm.block.BlockSeawater;
 import taeo.dsm.item.ItemBathysphere;
 import taeo.dsm.lib.Reference;
@@ -9,6 +9,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -28,18 +30,22 @@ public class DeepSea {
     @SidedProxy (clientSide="taeo.dsm.client.ClientProxy", serverSide="taeo.dsm.CommonProxy")
     public static CommonProxy proxy;
     
-    public final static Item itemBathysphere = new ItemBathysphere(5000);
-    public final static Block blockBuoy = new BlockBuoy(500, Material.ground);
-    public final static Block blockSeawater= new BlockSeawater(501, Material.water);
     public static CreativeTabs dsmTab = new CreativeTabs("dsmTab"){
         public ItemStack getIconItemStack(){
             return new ItemStack(itemBathysphere, 1, 0);
         }
     };
     
+    public final static Item itemBathysphere = new ItemBathysphere(5000).setUnlocalizedName("itemBathysphere");
+    public final static Fluid fluidSeawater = new Fluid("fluidSeawater");
+    public final static Fluid fluidDeepSea = new Fluid("fluidDeepSea");
+    public final static Block blockSeawater= new BlockSeawater(500, fluidSeawater, Material.water).setUnlocalizedName("blockSeawater");
+    public final static Block blockDeepSea = new BlockDeepSea(501, fluidDeepSea, Material.water).setUnlocalizedName("blockDeepSea");
+    
+    
     @EventHandler
     public void preInit(FMLPreInitializationEvent event){
-        registerItemsAndBlocks();
+        registerEverything();
         registerNames();
     }
     @EventHandler
@@ -50,22 +56,22 @@ public class DeepSea {
     @EventHandler
     public void postInit(FMLPostInitializationEvent event){}
     
-    private void registerItemsAndBlocks(){
+    private void registerEverything(){
         //Register Items
         GameRegistry.registerItem(itemBathysphere, "itemBathysphere");
         
         //Register Blocks
-        GameRegistry.registerBlock(blockBuoy, "blockBuoy");
         GameRegistry.registerBlock(blockSeawater, "blockSeawater");
-        //Set Creative Tab
-        itemBathysphere.setCreativeTab(dsmTab);
-        blockBuoy.setCreativeTab(dsmTab);
-        blockSeawater.setCreativeTab(dsmTab);
+        GameRegistry.registerBlock(blockDeepSea, "blockDeepSea");
+
+        
+        //Register Fluids
+        FluidRegistry.registerFluid(fluidSeawater);
         
     }
     private void registerNames(){
         LanguageRegistry.addName(itemBathysphere, "Bathysphere");
-        LanguageRegistry.addName(blockBuoy, "Buoy");
         LanguageRegistry.addName(blockSeawater, "Seawater");
+        LanguageRegistry.addName(blockDeepSea, "Infinite Water");
     }
 }
