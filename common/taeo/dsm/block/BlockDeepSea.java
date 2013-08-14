@@ -19,24 +19,65 @@ public class BlockDeepSea extends BlockFluidBase {
 	public void onNeighborBlockChange(World world, int x, int y, int z, int id) {
 		int seawaterId = DeepSea.blockSeawater.blockID;
 		int checkBlockId = world.getBlockId(x-1, y, z);
-		
 		if(checkBlockId == 0){world.setBlock(x-1, y, z, seawaterId);}
 		else if (checkBlockId == seawaterId){
 			world.setBlock(x-1, y, z, seawaterId, 7 , 3);
 		}
+		
+		checkBlockId = world.getBlockId(x+1, y, z);
+		if(checkBlockId == 0){world.setBlock(x+1, y, z, seawaterId);}
+		else if (checkBlockId == seawaterId){
+			world.setBlock(x+1, y, z, seawaterId, 7 , 3);
+		}
+		
+		checkBlockId = world.getBlockId(x, y, z-1);
+		if(checkBlockId == 0){world.setBlock(x, y, z-1, seawaterId);}
+		else if (checkBlockId == seawaterId){
+			world.setBlock(x, y, z-1, seawaterId, 7 , 3);
+		}
+		
+		checkBlockId = world.getBlockId(x, y, z+1);
+		if(checkBlockId == 0){world.setBlock(x, y, z+1, seawaterId);}
+		else if (checkBlockId == seawaterId){
+			world.setBlock(x, y, z+1, seawaterId, 7 , 3);
+		}
+		checkBlockId = world.getBlockId(x, y-1, z);
+		if(checkBlockId == 0){world.setBlock(x, y-1, z, seawaterId);}
+		else if (checkBlockId == seawaterId){
+			world.setBlock(x, y-1, z, seawaterId, 7 , 3);
+		}
 		world.scheduleBlockUpdate(x, y, z, this.blockID, tickRate);
 		
 	}
-	public void onTick(World world, int x, int y, int z){
+	/**public void onTick(World world, int x, int y, int z){
 		int seawaterId = DeepSea.blockSeawater.blockID;
-		int checkBlockId = world.getBlockId(x-1, y, z);
 		
+		int checkBlockId = world.getBlockId(x-1, y, z);
 		if(checkBlockId == 0){world.setBlock(x-1, y, z, seawaterId);}
 		else if (checkBlockId == seawaterId){
 			world.setBlock(x-1, y, z, seawaterId, 7 , 3);
 		}
+		
+		checkBlockId = world.getBlockId(x+1, y, z);
+		if(checkBlockId == 0){world.setBlock(x+1, y, z, seawaterId);}
+		else if (checkBlockId == seawaterId){
+			world.setBlock(x+1, y, z, seawaterId, 7 , 3);
+		}
+		
+		checkBlockId = world.getBlockId(x, y, z-1);
+		if(checkBlockId == 0){world.setBlock(x, y, z-1, seawaterId);}
+		else if (checkBlockId == seawaterId){
+			world.setBlock(x, y, z-1, seawaterId, 7 , 3);
+		}
+		
+		checkBlockId = world.getBlockId(x, y, z+1);
+		if(checkBlockId == 0){world.setBlock(x, y, z+1, seawaterId);}
+		else if (checkBlockId == seawaterId){
+			world.setBlock(x, y, z+1, seawaterId, 7 , 3);
+		}
+		
 		world.scheduleBlockUpdate(x, y, z, this.blockID, tickRate);
-	}
+	}*/
 	@Override
 	public FluidStack drain(World world, int x, int y, int z, boolean doDrain) {
 		// TODO Auto-generated method stub
